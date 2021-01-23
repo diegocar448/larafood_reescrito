@@ -25,7 +25,7 @@ Route::group([
     Route::get('/categories/{identify}', 'CategoryApiController@show');
     Route::get('/categories', 'CategoryApiController@categoriesByTenant');
 
-    Route::get('/tables/{identify}', 'TableApiController@show');
+    Route::get('/tenants/tables/{identify}', 'TableApiController@show');
     Route::get('/tables', 'TableApiController@tablesByTenant');
 
     Route::get('/products/{identify}', 'ProductApiController@show');

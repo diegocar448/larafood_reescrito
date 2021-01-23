@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUpdateTenant extends FormRequest
@@ -21,7 +22,7 @@ class StoreUpdateTenant extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         $id = $this->segment(3);
 

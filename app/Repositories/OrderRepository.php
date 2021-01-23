@@ -24,14 +24,15 @@ class OrderRepository implements OrderRepositoryInterface
         $clientId = '',
         $tableId = ''
     ) {
+
         $data = [
-            'tenant_id' => $tenantId,
             'identify' => $identify,
             'total' => $total,
+            //'comment' => $comment,
             'status' => $status,
-            'comment' => $comment,
+            'tenant_id' => $tenantId,
         ];
-
+        //dd($data);
         if ($clientId) $data['client_id'] = $clientId;
         if ($tableId) $data['table_id'] = $tableId;
 
@@ -44,8 +45,8 @@ class OrderRepository implements OrderRepositoryInterface
     public function getOrderByIdentify(string $identify)
     {
         return $this->entity
-                        ->where('identify', $identify)
-                        ->first();
+            ->where('identify', $identify)
+            ->first();
     }
 
     public function registerProductsOrder(int $orderId, array $products)
@@ -78,8 +79,8 @@ class OrderRepository implements OrderRepositoryInterface
     public function getOrdersByClientId(int $idClient)
     {
         $orders = $this->entity
-                            ->where('client_id', $idClient)
-                            ->paginate();
+            ->where('client_id', $idClient)
+            ->paginate();
 
         return $orders;
     }

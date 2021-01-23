@@ -95,6 +95,7 @@ class TenantController extends Controller
      */
     public function update(StoreUpdateTenant $request, $id)
     {
+
         if (!$tenant = $this->repository->find($id)) {
             return redirect()->back();
         }
@@ -148,13 +149,13 @@ class TenantController extends Controller
         $filters = $request->only('filter');
 
         $tenants = $this->repository
-                            ->where(function($query) use ($request) {
-                                if ($request->filter) {
-                                    $query->where('name', $request->filter);
-                                }
-                            })
-                            ->latest()
-                            ->paginate();
+            ->where(function ($query) use ($request) {
+                if ($request->filter) {
+                    $query->where('name', $request->filter);
+                }
+            })
+            ->latest()
+            ->paginate();
 
         return view('admin.pages.tenants.index', compact('tenants', 'filters'));
     }

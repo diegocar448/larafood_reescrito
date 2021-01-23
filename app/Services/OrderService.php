@@ -26,6 +26,7 @@ class OrderService
 
     public function ordersByClient()
     {
+
         $idClient = $this->getClientIdByOrder();
 
         return $this->orderRepository->getOrdersByClientId($idClient);
@@ -38,7 +39,8 @@ class OrderService
 
     public function createNewOrder(array $order)
     {
-        $productsOrder = $this->getProductsByOrder($order['products'] ?? []);
+
+        $productsOrder = $this->getProductsByOrder($order['products'] ?? '');
 
         $identify = $this->getIdentifyOrder();
         $total = $this->getTotalOrder($productsOrder);
@@ -73,7 +75,7 @@ class OrderService
         // $specialCharacters = str_shuffle('!@#$%*-');
 
         // $characters = $smallLetters.$numbers.$specialCharacters;
-        $characters = $smallLetters.$numbers;
+        $characters = $smallLetters . $numbers;
 
         $identify = substr(str_shuffle($characters), 0, $qtyCaraceters);
 
@@ -120,10 +122,10 @@ class OrderService
 
     private function getTableIdByOrder(string $uuid = '')
     {
+
         if ($uuid) {
             $table = $this->tableRepository->getTableByUuid($uuid);
-
-            return $table->id;
+            return (string) $table->id;
         }
 
         return '';
@@ -131,7 +133,7 @@ class OrderService
 
     private function getClientIdByOrder()
     {
+
         return auth()->check() ? auth()->user()->id : '';
     }
-
 }

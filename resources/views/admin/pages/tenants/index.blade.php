@@ -34,6 +34,7 @@
                         <tr>
                             <td>
                                 <img src="{{ url("storage/{$tenant->logo}") }}" alt="{{ $tenant->title }}" style="max-width: 90px;">
+                                {{-- <img src="{{ asset("storage/app/public/{$tenant->logo}") }}" alt="{{ $tenant->title }}" style="max-width: 90px;"> --}}
                             </td>
                             <td>{{ $tenant->name }}</td>
                             <td style="width=10px;">

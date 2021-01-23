@@ -132,14 +132,14 @@ class TableController extends Controller
         $filters = $request->only('filter');
 
         $tables = $this->repository
-                            ->where(function($query) use ($request) {
-                                if ($request->filter) {
-                                    $query->orWhere('description', 'LIKE', "%{$request->filter}%");
-                                    $query->orWhere('identify', $request->filter);
-                                }
-                            })
-                            ->latest()
-                            ->paginate();
+            ->where(function ($query) use ($request) {
+                if ($request->filter) {
+                    $query->orWhere('description', 'LIKE', "%{$request->filter}%");
+                    $query->orWhere('identify', $request->filter);
+                }
+            })
+            ->latest()
+            ->paginate();
 
         return view('admin.pages.tables.index', compact('tables', 'filters'));
     }
