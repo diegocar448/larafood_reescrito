@@ -13,7 +13,7 @@ class Product extends Model
 
 
     public function categories()
-    {
+    {   
         return $this->belongsToMany(Category::class);
     }
 
@@ -23,16 +23,16 @@ class Product extends Model
      */
     public function categoriesAvailable($filter = null)
     {
-        $categories = Category::whereNotIn('categories.id', function($query) {
+        $categories = Category::whereNotIn('categories.id', function ($query) {
             $query->select('category_product.category_id');
             $query->from('category_product');
             $query->whereRaw("category_product.product_id={$this->id}");
         })
-        ->where(function ($queryFilter) use ($filter) {
-            if ($filter)
-                $queryFilter->where('categories.name', 'LIKE', "%{$filter}%");
-        })
-        ->paginate();
+            ->where(function ($queryFilter) use ($filter) {
+                if ($filter)
+                    $queryFilter->where('categories.name', 'LIKE', "%{$filter}%");
+            })
+            ->paginate(5);
 
         return $categories;
     }

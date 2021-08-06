@@ -52,7 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    //'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://5bdf955a27ab.ngrok.io'),
+
 
     'asset_url' => env('ASSET_URL', null),
 

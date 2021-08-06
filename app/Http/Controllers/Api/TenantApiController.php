@@ -18,9 +18,10 @@ class TenantApiController extends Controller
 
     public function index(Request $request)
     {
+        
         $per_page = (int) $request->get('per_page', 15);
-
-        $tenants = $this->tenantService->getAllTenants($per_page);
+        
+        $tenants = $this->tenantService->getAllTenants($per_page);  
 
         return TenantResource::collection($tenants);
     }
